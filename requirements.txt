@@ -3,3 +3,4 @@ sqlalchemy==1.2.17
 marshmallow==2.18.0
 marshmallow_sqlalchemy==0.16.0
 requests==2.21.0
+hug==2.4.1

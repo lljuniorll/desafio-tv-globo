@@ -18,6 +18,16 @@ na pasta raiz do projeto execute o comando abaixo para instalar as dependências
 pip3 install -r requirements.txt
 ```
 
+Para simular as APIs da Globo, criei uma API com Hug com as chamadas para simulação. Para executar a API execute o 
+comando abaixo:
+
+Para o correto funcionamento, a API 'mock_apis_globo.py' deve estar rodando.
+```
+hug -f mock_apis_globo.py
+```
+
+
+
 Para executar a aplicação execute o comando no diretório raiz da aplicação:
 
 ```
