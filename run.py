@@ -8,6 +8,7 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from controller import File
 
+
 class JobScheduler(object):
     def __init__(self):
         self.scheduler = sched.scheduler(time.time, time.sleep)
@@ -60,7 +61,6 @@ def run_job_cut():
                       f"não está cortado, uma nova verificação será feita dentro de {cons.INTERVAL_SECONDS} segundos...")
     else:
         print('# Nada a fazer...')
-
 
     print(' ')
     print('# Tarefa de entrega de vídeos já cortados:')
