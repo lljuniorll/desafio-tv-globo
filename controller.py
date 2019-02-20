@@ -26,9 +26,10 @@ class File:
 
         file_to_read = open(self.file, "r")
         head, tail = os.path.split(self.file)
+        filename_date_and_sequence = self.filename_date_and_sequence(tail)
 
         line_number = 1
-        start_line = self.number_last_line(tail)
+        start_line = self.number_last_line(filename_date_and_sequence['filename_date'])
         for line in file_to_read:
             if line_number > start_line:
                 formatted_line = self.extract_line_data(line)
@@ -46,8 +47,6 @@ class File:
         file_to_read.close()  # fecha o arquivo
 
         # grava as informações arquivo no banco de dados
-
-        filename_date_and_sequence = self.filename_date_and_sequence(tail)
         self.log_file_processing(tail, line_number-1, filename_date_and_sequence['filename_date'],
                                  filename_date_and_sequence['filename_sequence'])
 
@@ -81,8 +80,8 @@ class File:
         return int(result['last_line']) if result else 8
 
     @staticmethod
-    def number_last_line(filename):
-        consulta = session.query(CutFile).filter_by(filename=filename).order_by(CutFile.filename_sequence.desc()).first()
+    def number_last_line(filename_date):
+        consulta = session.query(CutFile).filter_by(filename_date=filename_date).order_by(CutFile.filename_sequence.desc()).first()
         result = cut_file_schema.dump(consulta).data
         return int(result['last_line']) if result else 8
 
